@@ -10,6 +10,9 @@ import java.util.Set;
 @Entity
 @Table(name="category")
 @Data
+@NamedQueries({
+        @NamedQuery(name ="Category.findAll", query = "SELECT C FROM Category C"),
+})
 public class Category implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

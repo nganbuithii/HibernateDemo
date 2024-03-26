@@ -5,6 +5,7 @@
 package com.btn.hibernatedemo;
 
 import com.btn.pojo.Category;
+import com.btn.repository.impl.CategoryRepositoryImpl;
 import com.btn.repository.impl.ProductRepositoryImpl;
 import org.hibernate.Session;
 
@@ -19,17 +20,20 @@ import java.util.Map;
 public class HibernateDemo {
 
     public static void main(String[] args) {
+        CategoryRepositoryImpl s = new CategoryRepositoryImpl();
+        s.getCategories().forEach(c -> System.out.println(c.getName()));
+
 //        try (Session s = HibernateUtils.getFactory().openSession()) {
-            ProductRepositoryImpl s = new ProductRepositoryImpl();
-
-            Map<String, String> params = new HashMap<>();
-
-            // tim kiem theo ten san pham, theo gia
-        params.put("fromPrice","18000000");
-        params.put("toPrice","25000000");
-        params.put("kw","Note");
-
-            s.getProducts(params).forEach(p -> System.out.printf("%d -%s - %1f - %s \n",p.getId(),p.getName(),p.getPrice(),p.getCategory().getName()));
+//            ProductRepositoryImpl s = new ProductRepositoryImpl();
+//
+//            Map<String, String> params = new HashMap<>();
+//
+//            // tim kiem theo ten san pham, theo gia
+//        params.put("fromPrice","18000000");
+//        params.put("toPrice","25000000");
+//        params.put("kw","Note");
+//
+//            s.getProducts(params).forEach(p -> System.out.printf("%d -%s - %1f - %s \n",p.getId(),p.getName(),p.getPrice(),p.getCategory().getName()));
 //            Query q = s.createQuery("From Category");
 //            List<Category> cates = q.getResultList();
 //

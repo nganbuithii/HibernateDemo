@@ -1,6 +1,5 @@
 package com.btn.hibernatedemo;
-import com.btn.pojo.Category;
-import com.btn.pojo.Product;
+import com.btn.pojo.*;
 import org.hibernate.SessionFactory;
 
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
@@ -25,6 +24,12 @@ public class HibernateUtils {
         conf.setProperties(props);
         conf.addAnnotatedClass(Category.class);
         conf.addAnnotatedClass(Product.class);
+        conf.addAnnotatedClass(Comment.class);
+        conf.addAnnotatedClass(Tag.class);
+        conf.addAnnotatedClass(User.class);
+        conf.addAnnotatedClass(SaleOrder.class);
+        conf.addAnnotatedClass(ProdTag.class);
+        conf.addAnnotatedClass(OrderDetail.class);
 
         ServiceRegistry registry = new StandardServiceRegistryBuilder().applySettings(conf.getProperties()).build();
         factory = conf.buildSessionFactory(registry);
