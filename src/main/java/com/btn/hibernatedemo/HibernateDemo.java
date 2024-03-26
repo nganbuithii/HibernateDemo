@@ -5,6 +5,7 @@
 package com.btn.hibernatedemo;
 
 import com.btn.pojo.Category;
+import com.btn.pojo.Product;
 import com.btn.repository.impl.CategoryRepositoryImpl;
 import com.btn.repository.impl.ProductRepositoryImpl;
 import org.hibernate.Session;
@@ -22,6 +23,14 @@ public class HibernateDemo {
     public static void main(String[] args) {
         CategoryRepositoryImpl s = new CategoryRepositoryImpl();
         s.getCategories().forEach(c -> System.out.println(c.getName()));
+
+        ProductRepositoryImpl c = new ProductRepositoryImpl();
+        Product p = new Product();
+        p.setName("ABC");
+        p.setPrice(12000000);
+        p.setCategory(s.getCateById(1));
+        c.addOrUpdate(p);
+
 
 //        try (Session s = HibernateUtils.getFactory().openSession()) {
 //            ProductRepositoryImpl s = new ProductRepositoryImpl();

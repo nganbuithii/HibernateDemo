@@ -15,4 +15,10 @@ public class CategoryRepositoryImpl {
             return q.getResultList();
         }
     }
+    // Lay id cua CATEGORY
+    public Category getCateById(int id){
+        try(Session s = HibernateUtils.getFactory().openSession()){
+            return s.get(Category.class, id);
+        }
+    }
 }

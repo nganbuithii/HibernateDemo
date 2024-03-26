@@ -58,4 +58,9 @@ public class ProductRepositoryImpl {
             return products;
         }
     }
+    public void addOrUpdate(Product p){
+        try(Session s = HibernateUtils.getFactory().openSession()){
+            s.saveOrUpdate(p);
+        }
+    }
 }
