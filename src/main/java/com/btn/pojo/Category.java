@@ -5,6 +5,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Set;
 
 @Entity
 @Table(name="category")
@@ -15,4 +16,8 @@ public class Category implements Serializable {
     private int id;
     private String name;
     private String description;
+
+    // Cau hinh nguoc
+    @OneToMany(mappedBy = "category")
+    private Set<Product> products;
 }

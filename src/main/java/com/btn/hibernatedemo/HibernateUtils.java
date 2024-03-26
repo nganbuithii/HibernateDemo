@@ -1,5 +1,6 @@
 package com.btn.hibernatedemo;
 import com.btn.pojo.Category;
+import com.btn.pojo.Product;
 import org.hibernate.SessionFactory;
 
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
@@ -23,6 +24,8 @@ public class HibernateUtils {
 
         conf.setProperties(props);
         conf.addAnnotatedClass(Category.class);
+        conf.addAnnotatedClass(Product.class);
+
         ServiceRegistry registry = new StandardServiceRegistryBuilder().applySettings(conf.getProperties()).build();
         factory = conf.buildSessionFactory(registry);
     }
