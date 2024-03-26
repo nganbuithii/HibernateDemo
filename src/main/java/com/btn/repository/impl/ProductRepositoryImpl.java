@@ -23,32 +23,32 @@ public class ProductRepositoryImpl {
             Root<Product> root = cq.from(Product.class);
             cq.select(root);
 
-            // Thêm điều kiện tùy thuộc vào params nếu cần
-            List<Predicate> predicates = new ArrayList<>();
-            String kw = params.get("kw");
-            if (kw != null && !kw.isEmpty())
-                predicates.add(cb.like(root.get("name"), String.format("%%%s%%", kw)));
+        // Thêm điều kiện tùy thuộc vào params nếu cần
+        List<Predicate> predicates = new ArrayList<>();
+        String kw = params.get("kw");
+        if (kw != null && !kw.isEmpty())
+            predicates.add(cb.like(root.get("name"), String.format("%%%s%%", kw)));
 
-            // Tim san pham theo khoang gia
-            String fromPrice = params.get("fromPrice");
-            if(fromPrice!= null && !fromPrice.isEmpty())
-                predicates.add(cb.greaterThanOrEqualTo(root.get("price"), Double.parseDouble(fromPrice)));
+        // Tim san pham theo khoang gia
+        String fromPrice = params.get("fromPrice");
+        if(fromPrice!= null && !fromPrice.isEmpty())
+            predicates.add(cb.greaterThanOrEqualTo(root.get("price"), Double.parseDouble(fromPrice)));
 
-            String toPrice = params.get("toPrice");
-            if(toPrice!= null && !toPrice.isEmpty())
-                predicates.add(cb.lessThanOrEqualTo(root.get("price"), Double.parseDouble(toPrice)));
+        String toPrice = params.get("toPrice");
+        if(toPrice!= null && !toPrice.isEmpty())
+            predicates.add(cb.lessThanOrEqualTo(root.get("price"), Double.parseDouble(toPrice)));
 
 
 
-            // loc theo danh muc
-            String cateId = params.get("cateId");
-            if(cateId!= null && !cateId.isEmpty())
-                predicates.add(cb.equal(root.get("category").as(Integer.class), Integer.parseInt(cateId)));
-            // Sử dụng orderBy để sắp xếp kết quả
+        // loc theo danh muc
+        String cateId = params.get("cateId");
+        if(cateId!= null && !cateId.isEmpty())
+            predicates.add(cb.equal(root.get("category").as(Integer.class), Integer.parseInt(cateId)));
+        // Sử dụng orderBy để sắp xếp kết quả
 
-            // parse thanh tung phan tu predicate roi
-            cq.where(predicates.toArray(Predicate[]::new));
-            cq.orderBy(cb.desc(root.get("id")));
+        // parse thanh tung phan tu predicate roi
+        cq.where(predicates.toArray(Predicate[]::new));
+        cq.orderBy(cb.desc(root.get("id")));
 
             // Tạo một truy vấn từ CriteriaQuery
             Query query = s.createQuery(cq);

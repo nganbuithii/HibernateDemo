@@ -25,9 +25,9 @@ public class HibernateDemo {
             Map<String, String> params = new HashMap<>();
 
             // tim kiem theo ten san pham, theo gia
-            params.put("fromPrice","18000000");
-            params.put("toPrice","25000000");
-            params.put("kw","Note");
+        params.put("fromPrice","18000000");
+        params.put("toPrice","25000000");
+        params.put("kw","Note");
 
             s.getProducts(params).forEach(p -> System.out.printf("%d -%s - %1f - %s \n",p.getId(),p.getName(),p.getPrice(),p.getCategory().getName()));
 //            Query q = s.createQuery("From Category");
